@@ -1,0 +1,33 @@
+<form action="" method="post">
+    <div class="card">
+        <div class="card-header">
+            Chỉnh sửa chuyên mục
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+              <label for="txtCatID">STT chuyên mục</label>
+              <input type="text" name="CatID" id="txtCatID" class="form-control" placeholder="" value="{{this.category.CatID}}" readonly>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+              <label for="txtCatName">Tên chuyên mục</label>
+              <input type="text" name="CatName" id="txtCatName" class="form-control" placeholder="" value="{{this.category.CatName}}">
+            </div>
+        </div>
+        <div class="card-footer">
+            <a name="" id="" class="btn btn-primary" href="/admin/categories" role="button">
+                <i class="bi bi-arrow-left-circle"></i>
+                Danh sách
+            </a>
+            <button type="submit" class="btn btn-danger" formaction="/admin/categories/del">
+                <i class="bi bi-trash"></i>
+                Xóa
+            </button>
+            <button type="submit" class="btn btn-primary" formaction="/admin/categories/patch">
+                <i class="bi bi-check2"></i>
+                Lưu
+            </button>
+        </div>
+    </div>
+</form>

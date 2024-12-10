@@ -1,0 +1,51 @@
+{{#if auth}}
+<form action="" method="post">
+    <div class="card">
+        <h4 class="card-header">
+            <div class="form-group">
+              <input type="text" name="ProID" id="txtProID" class="form-control" placeholder="" value="{{this.product.ProID}}" readonly>
+            </div>
+            {{this.product.ProName}}
+        </h4>
+        <div class="card-body">
+            <img src="/static/imgs/sp/{{this.product.ProID}}/main.jpg" alt="{{this.product.ProName}}" title="{{this.product.ProName}}">
+            <p class="card-text">
+                Nội dung tóm tắt: <span class="card-text">{{this.product.TinyDes}}</span>
+            </p>
+            <p class="card-text">
+                Chuyên mục: {{this.product.CatID}}
+            </p>
+            <h5>
+                Nội dung đầy đủ
+            </h5>
+            <p class="card-text">
+                {{{this.product.FullDes}}}
+            </p>
+        </div>
+        <div class="card-footer text-muted">
+            <a name="" id="" class="btn btn-primary" href="/admin/products" role="button">
+                <i class="bi bi-arrow-left-circle"></i>
+                Danh sách
+            </a>
+            <button type="submit" class="btn btn-danger" formaction="/products/del">
+                <i class="bi bi-trash"></i>
+                Xóa
+            </button>
+            <button type="submit" class="btn btn-primary" formaction="/products/up">
+                <i class="bi bi-check2"></i>
+                Đăng
+            </button>
+        </div>
+    </div>
+</form>
+{{else}}
+<div class="jumbotron">
+    <h1 class="display-3">403</h1>
+    <p class="lead">Hãy đăng nhập để xem nội dung chi tiết về bài báo</p>
+    <hr class="my-2">
+    <p>More info</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="/" role="button">Trang chủ</a>
+    </p>
+</div>
+{{/if}}

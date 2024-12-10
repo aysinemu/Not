@@ -1,0 +1,37 @@
+<div class="card">
+    <h4 class="card-header d-flex justify-content-between">
+       Bài báo
+       <a href="/misc/upload" role="button" class="btn btn-sm btn-outline-primary">Thêm bài báo</a>
+    </h4>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên bài báo</th>
+                    <th>&nbsp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each this.products}}
+                <tr>
+                    <td scope="row">{{ProID}}</td>
+                    <td>{{ProName}}</td>
+                    <td>{{TinyDes}}</td>
+                    <td>
+                        <a name="" id="" class="btn btn-primary" href="/products/detail?id={{ProID}}" role="button">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                    </td>
+                    {{!-- <td>{{Price}}</td>    
+                    <td>{{CatID}}</td>
+                    <td>{{Quantity}}</td> --}}
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+       The End
+    </div>
+<div>

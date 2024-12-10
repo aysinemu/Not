@@ -23,5 +23,5 @@ export default {
     },
     del(id){
         return db('products').where('ProID', id).del();
-    }
+    },
 }

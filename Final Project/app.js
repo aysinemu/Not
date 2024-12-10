@@ -12,6 +12,7 @@ import hbs_section from'express-handlebars-sections'
 import session from 'express-session';
 import { isAdmin,isAuth,isSub,isEdit,isWrite } from './middlewares/auth.mdw.js';
 import miscRouter from './routes/misc.route.js';
+import Handlebars from 'handlebars';
 
 const app = express();
 app.set('trust proxy', 1) // trust first proxy
@@ -54,6 +55,10 @@ app.use(async function(req,res,next){
 app.use(express.urlencoded({
     extended: true
 }))
+
+Handlebars.registerHelper('eq', function(a, b) {
+    return a === b; // So sánh bằng giá trị và kiểu
+});
 
 // function rootHandler (req, res) {
 //     res.send('Hello World!');

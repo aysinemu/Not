@@ -34,11 +34,19 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="/account/profile"><i class="bi bi-person-vcard-fill"></i>Thông tin cá nhân</a>
-                <a class="dropdown-item" href="/"><i class="bi bi-person-fill-lock"></i>Đổi mật khẩu</a>
+                <a class="dropdown-item" href="/account/update-password"><i class="bi bi-person-fill-lock"></i>Đổi mật khẩu</a>
+                {{#if (eq authUser.permission 0)}}
                 <a class="dropdown-item" href="/admin/categories"><i class="bi bi-cloud-upload-fill"></i>Chuyên mục</a>
                 <a class="dropdown-item" href="/admin/products"><i class="bi bi-newspaper"></i>Bài báo</a>
                 <a class="dropdown-item" href="/misc/upload"><i class="bi bi-upload"></i>Đăng bài báo</a>
                 <a class="dropdown-item" href="/misc/editor"><i class="bi bi-list-check"></i>Phê duyệt bài báo</a>
+                {{/if}}
+                {{#if (eq authUser.permission 2)}}
+                <a class="dropdown-item" href="/misc/editor"><i class="bi bi-list-check"></i>Phê duyệt bài báo</a>
+                {{/if}}
+                {{#if (eq authUser.permission 3)}}
+                <a class="dropdown-item" href="/misc/upload"><i class="bi bi-upload"></i>Đăng bài báo</a>
+                {{/if}}
                 <div class="dropdown-divider"></div>
                 <a id="lnkLogout" class="dropdown-item" href="/account/logout"><i class="bi bi-box-arrow-in-left"></i>Đăng xuất</a>
               </div>

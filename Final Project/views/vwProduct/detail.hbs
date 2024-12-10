@@ -23,18 +23,20 @@
             </p>
         </div>
         <div class="card-footer text-muted">
-            <a name="" id="" class="btn btn-primary" href="/admin/products" role="button">
+            <a name="" id="" class="btn btn-primary" href="/products/byCat?id=1" role="button">
                 <i class="bi bi-arrow-left-circle"></i>
                 Danh sách
             </a>
+            <button type="submit" class="btn btn-primary" formaction="/products/pat">
+                <i class="bi bi-heart-fill"></i>
+                Tym
+            </button>
+            {{#if (eq authUser.permission 0)}}
             <button type="submit" class="btn btn-danger" formaction="/products/del">
                 <i class="bi bi-trash"></i>
                 Xóa
             </button>
-            <button type="submit" class="btn btn-primary" formaction="/products/up">
-                <i class="bi bi-check2"></i>
-                Đăng
-            </button>
+            {{/if}}
         </div>
     </div>
 </form>

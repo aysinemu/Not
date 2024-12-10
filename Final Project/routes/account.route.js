@@ -64,7 +64,7 @@ router.get('/profile',isAuth,function(req,res){
   });
 });
 
-router.get('/update-password',function(req,res){
+router.get('/update-password',isAuth,function(req,res){
   res.render('vwAccount/update-password',{
     user: req.session.authUser
   });
@@ -74,6 +74,29 @@ router.get('/logout', function(req,res){
   req.session.auth = false;
   req.session.authUser = null;
   req.session.retUrl = null;
+  res.redirect('/');
+});
+
+router.post('/patch',async function (req,res) {
+  const id = parseInt(req.body.id);
+  const ymd_dob = moment(req.body.raw_dob,'DD/MM/YYYY').format('YYYY-MM-DD');
+  const entity = {
+    username: req.body.username,
+    name: req.body.name,
+    email: req.body.email,
+    dob: ymd_dob,
+};
+  await userService.patch(id,entity);
+  res.redirect('/');
+});
+
+router.post('/pat',async function (req,res) {
+  const id = parseInt(req.body.id);
+  const hash_password = bcrypt.hashSync(req.body.raw_password,8);
+  const entity = {
+    password: hash_password
+};
+  await userService.pat(id,entity);
   res.redirect('/');
 });
 

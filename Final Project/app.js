@@ -92,13 +92,6 @@ app.get('/', function (req, res) {
     });
 });
 
-app.get('/about', function (req, res) {
-    res.render('about');
-    // res.render('about', {
-    //     layout:false
-    // });
-});
-
 app.listen(3000, function (){console.log('Server started on http://localhost:3000');});
 
 const __dirname = dirname(fileURLToPath(import.meta.url));

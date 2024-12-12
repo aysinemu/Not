@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-header">
+        Bài báo
+    </div>
+    {{#if this.empty}}
+    <div class="card-body">
+        <p class="card-text">Không có dữ liệu</p>
+    </div>
+    {{else}}
+    <div class="card-body">
+        <div class="row">
+            {{#each this.products}}
+             {{#if (eq Price 0)}}
+                <div class="col-sm-6 mb-3">
+                    <div class="card h-100">
+                        <img src="/static/imgs/sp/{{ProID}}/main.jpg" alt="{{ProName}}" title="{{ProName}}" class="card-img-top">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ProName}}</h4>
+                            <h4 class="card-title text-danger">Chuyên mục: {{CatID}}</h4>
+                            <p class="card-text">{{TinyDes}}</p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <a class="btn btn-sm btn-outline-primary" href="/products/detail?id={{ProID}}" role="button">
+                                <i class="bi bi-eye-fill"></i>
+                                Nội dung chi tiết
+                            </a>
+                        </div>
+                    </div>
+                </div>
+             {{/if}}
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
+    <div class="card-footer text-muted">
+        The End
+    </div>
+</div>

@@ -56,5 +56,73 @@ router.post('/up',async function (req,res) {
   };
     await productService.up(id,entity);
     res.redirect('/admin/products/editor');
-  });
+});
+
+router.post('/tym',async function (req,res) {
+    const id = parseInt(req.body.ProID);
+    const entity = {
+      Quantity: req.body.Quantity
+  };
+    await productService.up(id,entity);
+    res.redirect(`/products/detail?id=${id}`);
+});
+
+router.get('/Moi', async function (req,res) {
+    // const list = await productService.findByCatId(id);
+    const list = await productService.findAll();
+    
+    const filteredList = list.filter(product => product.Price === 0);
+    
+    const sortedList = filteredList.sort((a, b) => b.ProID - a.ProID).slice(0, 10);
+    
+    res.render('vwProduct/Moi', {
+        products: sortedList
+    });
+});
+
+router.get('/NoiBat', async function (req,res) {
+    // const list = await productService.findByCatId(id);
+    const list = await productService.findAll();
+    const topProducts = list.sort((a, b) => b.Quantity - a.Quantity).slice(0, 4);
+    
+    res.render('vwProduct/NoiBat', {
+        products: topProducts
+    });
+});
+
+router.get('/XemNhieu', async function (req,res) {
+    // const list = await productService.findByCatId(id);
+    const list = await productService.findAll();
+    const topProducts = list.sort((a, b) => b.Quantity - a.Quantity).slice(0, 10);
+    
+    res.render('vwProduct/XemNhieu', {
+        products: topProducts
+    });
+});
+
+router.get('/Top10', async function (req,res) {
+    // const list = await productService.findByCatId(id);
+    const list = await productService.findAll();
+
+    const groupedByCatID = list.reduce((acc, product) => {
+        if (!acc[product.CatID]) {
+            acc[product.CatID] = [];
+        }
+        acc[product.CatID].push(product);
+        return acc;
+    }, {});
+
+    const topProductsByCatID = Object.keys(groupedByCatID).map(catID => {
+        const productsInCategory = groupedByCatID[catID];
+        const topProducts = productsInCategory
+            .sort((a, b) => b.Quantity - a.Quantity) 
+            .slice(0, 5); 
+        return topProducts;
+    }).flat(); 
+
+    res.render('vwProduct/Top10', {
+        products: topProductsByCatID
+    });
+});
+
 export default router 

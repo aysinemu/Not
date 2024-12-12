@@ -4,5 +4,9 @@
   <Con class="lead">Con số may mắn của bạn hôm nay là {{this.randomNumber}}</p>
   <hr class="my-4">
   <p>Trang web của mình hiện tại còn khá là dỏm do mình mới học code web mong các bạn thông cảm trong quá trình sử dụng web</p>
+  {{#if auth}}
   <a class="btn btn-primary btn-lg" href="/products/NoiBat" role="button">Home</a>
+  {{else}}
+  <a class="btn btn-primary btn-lg" href="/account/login" role="button">Login</a>
+  {{/if}}
 </div>

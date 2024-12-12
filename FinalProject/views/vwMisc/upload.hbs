@@ -1,6 +1,7 @@
 {{#fillHtmlContent 'css'}}
 <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+
 {{/fillHtmlContent}}
 {{#fillHtmlContent 'js'}}
 <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/fileinput.min.js"></script>
@@ -15,17 +16,79 @@
     plugins: 'paste image link autolink lists table media',
     menubar: 'false',
     toolbar: [
-        'undo redo | bold italic underline strikethrough | numlist bullist | alignright alignleft aligncenter | forecolor backcolor',
+        'undo redo | bold italic underline strikethrough | numlist bullist | alignright alignleft aligncenter | forecolor backcolor | image',
     ],
-    });
+    content_style: "img { max-width: 100%; height: auto; }",
+    image_advtab: true, 
+    imagetools_toolbar: "rotateleft rotateright | flipv fliph | editimage imageoptions"
+});
 </script>
-<script>$("#fuMain").fileinput({
-    dropZoneEnabled: true,
-    maxFileCount: 5,
-    allowedFileExtensions: ['jpg', 'png', 'gif'],
-    theme: "fa5",
-    language: "vi",
+<script>
+$(document).ready(function () {
+    const $fileInput = $("#fuMain");
+
+    $fileInput.fileinput({
+        dropZoneEnabled: true,
+        maxFileCount: 5,
+        allowedFileExtensions: ['jpg','png'],
+        theme: "fa5",
+        language: "vi",
+        showUpload: false, 
     });
+
+    function convertToJpg(blob, callback) {
+        const img = new Image();
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        img.onload = function () {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+
+            canvas.toBlob(
+                function (jpegBlob) {
+                    callback(jpegBlob);
+                },
+                "image/jpeg",
+                0.9 
+            );
+        };
+
+        const url = URL.createObjectURL(blob);
+        img.src = url;
+    }
+
+    $(document).on("paste", function (e) {
+        const clipboardData = e.originalEvent.clipboardData;
+
+        if (clipboardData && clipboardData.items) {
+            for (let item of clipboardData.items) {
+                if (item.type.startsWith("image/")) {
+                    const file = item.getAsFile();
+
+                    convertToJpg(file, function (jpegBlob) {
+                        const jpgFile = new File([jpegBlob], "pasted-image.jpg", { type: "image/jpeg" });
+
+                        const fileList = [$fileInput.fileinput("getFiles")].flat();
+                        fileList.push(jpgFile);
+                        $fileInput.fileinput("destroy").fileinput({
+                            initialPreview: [],
+                            initialPreviewFileType: "image",
+                            initialPreviewAsData: true,
+                            dropZoneEnabled: true,
+                            maxFileCount: 5,
+                            allowedFileExtensions: ['jpg'],
+                            theme: "fa5",
+                            language: "vi",
+                            showUpload: false,
+                        }).fileinput("refresh", { initialPreviewFileType: fileList })
+                    });
+                }
+            }
+        }
+    });
+});
 </script>
 {{/fillHtmlContent}}
 <form action="" method="post" enctype="multipart/form-data">
@@ -57,7 +120,7 @@
                 <input type="text" name="Youtube" id="txtYoutube" class="form-control" placeholder="Nông sản - Hải sản">
             </div> --}}
             <div class="form-group">
-              <label for="fuMain">Photo</label>
+              <label for="fuMain">Photo "Lưu ý định dạnh jpg only"</label>
               <input type="file" id="fuMain" name="fuMain" multiple>
             </div>
             <div class="form-group">

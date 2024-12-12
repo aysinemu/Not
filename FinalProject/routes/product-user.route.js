@@ -64,7 +64,6 @@ router.post('/tym',async function (req,res) {
       Quantity: req.body.Quantity
   };
     await productService.up(id,entity);
-    res.redirect(`/products/detail?id=${id}`);
 });
 
 router.get('/Moi', async function (req,res) {

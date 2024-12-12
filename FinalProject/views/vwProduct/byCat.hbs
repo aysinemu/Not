@@ -15,9 +15,9 @@
                     <div class="card h-100">
                         <img src="/static/imgs/sp/{{ProID}}/main.jpg" alt="{{ProName}}" title="{{ProName}}" class="card-img-top">
                         <div class="card-body">
-                            <h4 class="card-title">{{ProName}}</h4>
-                            <h4 class="card-title text-danger">Chuyên mục: {{CatID}}</h4>
-                            <p class="card-text">{{TinyDes}}</p>
+                            <h4 class="card-title">Tên: {{ProName}}</h4>
+                            {{!-- <h4 class="card-title text-danger">Chuyên mục: {{CatID}}</h4> --}}
+                            <p class="card-text">Nội dung tóm tắt: {{TinyDes}}</p>
                         </div>
                         <div class="card-footer text-muted">
                             <a class="btn btn-sm btn-outline-primary" href="/products/detail?id={{ProID}}" role="button">
@@ -30,27 +30,34 @@
              {{/if}}
             {{/each}}
         </div>
-        <ul class="pagination">
-            <li class="page-item disabled">
-                <a class="page-link">Trang trước</a>
-            </li>
-            {{#each this.page_items}}
-            {{#if isActive}}
-                <li class="page-item active">
-                    <a class="page-link" href="#">{{value}}</a>
-                </li>
-            {{else}}
-                <li class="page-item">
-                    <a class="page-link" href="/products/byCat?id={{../catId}}&page={{value}}">{{value}}</a>
-                </li>
-            {{/if}}
-            {{/each}}
-            <li class="page-item">
-                <a class="page-link" href="#">Trang sau</a>
-            </li>
-        </ul>
+        <div class="pagination-container">
+            <ul class="pagination">
+                {{#each this.page_items}}
+                {{#if isActive}}
+                    <li class="page-item active">
+                        <a class="page-link" href="/products/byCat?id={{../catId}}&page={{value}}">{{value}}</a>
+                    </li>
+                {{else}}
+                    <li class="page-item">
+                        <a class="page-link" href="/products/byCat?id={{../catId}}&page={{value}}">{{value}}</a>
+                    </li>
+                {{/if}}
+                {{/each}}
+            </ul>
+        </div>
     </div>
     {{/if}}
     <div class="card-footer text-muted">
     </div>
 </div>
+<style>
+    .pagination-container {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination {
+    margin: 0;
+    padding: 0;
+}
+</style>

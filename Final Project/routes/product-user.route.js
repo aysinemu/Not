@@ -49,4 +49,12 @@ router.post('/del',async function (req,res) {
     res.redirect('/admin/products');
 });
 
+router.post('/up',async function (req,res) {
+    const id = parseInt(req.body.ProID);
+    const entity = {
+      Price: req.body.Price
+  };
+    await productService.up(id,entity);
+    res.redirect('/admin/products/editor');
+  });
 export default router 

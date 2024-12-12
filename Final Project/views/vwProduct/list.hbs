@@ -14,19 +14,21 @@
             </thead>
             <tbody>
                 {{#each this.products}}
-                <tr>
-                    <td scope="row">{{ProID}}</td>
-                    <td>{{ProName}}</td>
-                    <td>{{TinyDes}}</td>
-                    <td>
-                        <a name="" id="" class="btn btn-primary" href="/products/detail?id={{ProID}}" role="button">
-                            <i class="bi bi-pencil-square"></i>
-                        </a>
-                    </td>
-                    {{!-- <td>{{Price}}</td>    
-                    <td>{{CatID}}</td>
-                    <td>{{Quantity}}</td> --}}
-                </tr>
+                    {{#if (eq Price 0)}}
+                        <tr>
+                            <td scope="row">{{ProID}}</td>
+                            <td>{{ProName}}</td>
+                            <td>{{TinyDes}}</td>
+                            <td>
+                                <a name="" id="" class="btn btn-primary" href="/products/detail?id={{ProID}}" role="button">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            </td>
+                            {{!-- <td>{{Price}}</td>    
+                            <td>{{CatID}}</td>
+                            <td>{{Quantity}}</td> --}}
+                        </tr>
+                    {{/if}}
                 {{/each}}
             </tbody>
         </table>

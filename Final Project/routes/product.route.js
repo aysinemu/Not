@@ -9,4 +9,10 @@ router.get('/', async function (req,res) {
         products: list});
 });
 
+router.get('/editor', async function (req,res) {
+    const list = await productService.findAll();
+    res.render('vwProduct/editor',{
+        products: list});
+});
+
 export default router

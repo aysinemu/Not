@@ -10,22 +10,24 @@
     <div class="card-body">
         <div class="row">
             {{#each this.products}}
-            <div class="col-sm-6 mb-3">
-                <div class="card h-100">
-                    <img src="/static/imgs/sp/{{ProID}}/main.jpg" alt="{{ProName}}" title="{{ProName}}" class="card-img-top">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ProName}}</h4>
-                        <h4 class="card-title text-danger">Chuyên mục: {{CatID}}</h4>
-                        <p class="card-text">{{TinyDes}}</p>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <a class="btn btn-sm btn-outline-primary" href="/products/detail?id={{ProID}}" role="button">
-                            <i class="bi bi-eye-fill"></i>
-                            Nội dung chi tiết
-                        </a>
+             {{#if (eq Price 0)}}
+                <div class="col-sm-6 mb-3">
+                    <div class="card h-100">
+                        <img src="/static/imgs/sp/{{ProID}}/main.jpg" alt="{{ProName}}" title="{{ProName}}" class="card-img-top">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ProName}}</h4>
+                            <h4 class="card-title text-danger">Chuyên mục: {{CatID}}</h4>
+                            <p class="card-text">{{TinyDes}}</p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <a class="btn btn-sm btn-outline-primary" href="/products/detail?id={{ProID}}" role="button">
+                                <i class="bi bi-eye-fill"></i>
+                                Nội dung chi tiết
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
+             {{/if}}
             {{/each}}
         </div>
         <ul class="pagination">

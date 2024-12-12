@@ -34,7 +34,8 @@ router.post('/upload', upload.array('fuMain', 5), async function (req, res) {
         ProName: req.body.ProName,
         CatID: req.body.CatID,
         TinyDes: req.body.TinyDes,
-        FullDes: req.body.FullDes
+        FullDes: req.body.FullDes,
+        Price: req.body.Price
       };
   
       const ret = await miscService.add(entity);

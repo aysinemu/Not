@@ -60,6 +60,10 @@ Handlebars.registerHelper('eq', function(a, b) {
     return a === b; // So sánh bằng giá trị và kiểu
 });
 
+Handlebars.registerHelper("or", function (a, b) {
+    return a || b;
+  });
+
 // function rootHandler (req, res) {
 //     res.send('Hello World!');
 // }
@@ -67,7 +71,8 @@ Handlebars.registerHelper('eq', function(a, b) {
 // function serverStartedHander(){
 //     console.log('Server started on http://localhost:3000');
 // }
-app.use('/admin/products',isAuth,isAdmin,productRouter);
+app.use('/admin/products',isAuth,productRouter);
+app.use('/admin/products/editor',isAuth,isEdit,productRouter);
 app.use('/products',productUserRouter);
 app.use('/admin/categories',isAuth,isAdmin,categoryRouter);
 app.use('/account', accountRouter);

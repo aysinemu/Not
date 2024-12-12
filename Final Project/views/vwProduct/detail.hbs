@@ -21,6 +21,9 @@
             <p class="card-text">
                 {{{this.product.FullDes}}}
             </p>
+            <div class="form-group">
+              <input type="hidden" name="Price" id="txtPrice" class="form-control" value="0">
+            </div>
         </div>
         <div class="card-footer text-muted">
             <a name="" id="" class="btn btn-primary" href="/products/byCat?id=1" role="button">
@@ -31,11 +34,19 @@
                 <i class="bi bi-heart-fill"></i>
                 Tym
             </button>
-            {{#if (eq authUser.permission 0)}}
+            {{#if (or (eq authUser.permission 0) (eq authUser.permission 2))}}
             <button type="submit" class="btn btn-danger" formaction="/products/del">
-                <i class="bi bi-trash"></i>
-                Xóa
+                <i class="bi bi-x-lg"></i>
+                Từ chối
             </button>
+            {{/if}}
+            {{#if (eq this.product.Price 1)}}
+            {{#if (or (eq authUser.permission 0) (eq authUser.permission 2))}}
+            <button type="submit" class="btn btn-primary" formaction="/products/up">
+                <i class="bi bi-check2"></i>
+                Đăng
+            </button>
+            {{/if}}
             {{/if}}
         </div>
     </div>

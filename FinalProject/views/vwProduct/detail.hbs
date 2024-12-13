@@ -12,9 +12,19 @@
             <p class="card-text">
                 Nội dung tóm tắt: <span class="card-text">{{this.product.TinyDes}}</span>
             </p>
-            <p class="card-text">
+            {{!-- <p class="card-text">
                 Chuyên mục: {{this.product.CatID}}
+            </p> --}}
+            {{#if (eq this.product.CatID 1)}}
+            <p class="card-text">
+                Chuyên mục: Nông sản
             </p>
+            {{/if}}
+            {{#if (eq this.product.CatID 2)}}
+            <p class="card-text">
+                Chuyên mục: Hải sản
+            </p>
+            {{/if}}
             <h5>
                 Nội dung đầy đủ
             </h5>

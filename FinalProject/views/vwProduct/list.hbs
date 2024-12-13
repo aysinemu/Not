@@ -1,7 +1,7 @@
+{{#if auth}}
 <div class="card">
     <h4 class="card-header d-flex justify-content-between">
        Bài báo
-       <a href="/misc/upload" role="button" class="btn btn-sm btn-outline-primary">Thêm bài báo</a>
     </h4>
     <div class="card-body">
         <table class="table table-hover">
@@ -9,7 +9,7 @@
                 <tr>
                     <th>STT</th>
                     <th>Tên bài báo</th>
-                    <th>&nbsp</th>
+                    <th>Nội dung tóm tắt</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,3 +37,4 @@
        The End
     </div>
 <div>
+{{/if}}

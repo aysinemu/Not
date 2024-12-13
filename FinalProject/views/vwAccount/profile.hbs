@@ -11,10 +11,17 @@
                 <label for="txtUsername">Tên đăng nhập</label>
                 <input type="text" value="{{this.user.username}}" name="username" id="txtUsername" class="form-control" placeholder="">
             </div>
+            {{#if (eq this.user.permission 3)}}
+            <div class="form-group">
+                <label for="txtName">Bút danh</label>
+                <input type="text" value="{{this.user.name}}" name="name" id="txtName" class="form-control" placeholder="">
+            </div>
+            {{else}}
             <div class="form-group">
                 <label for="txtName">Tên</label>
                 <input type="text" value="{{this.user.name}}" name="name" id="txtName" class="form-control" placeholder="">
             </div>
+            {{/if}}
             <div class="form-group">
                 <label for="txtEmail">Email</label>
                 <input type="text" value="{{this.user.email}}" name="email" id="txtEmail" class="form-control" placeholder="">

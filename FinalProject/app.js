@@ -57,12 +57,21 @@ app.use(express.urlencoded({
 }))
 
 Handlebars.registerHelper('eq', function(a, b) {
-    return a === b; // So sánh bằng giá trị và kiểu
+    return a === b; 
 });
 
 Handlebars.registerHelper("or", function (a, b) {
     return a || b;
   });
+
+Handlebars.registerHelper('array', function (...args) {
+    return args.slice(0, -1);
+});
+
+
+Handlebars.registerHelper('inArray', function (value, array) {
+    return array.includes(value);
+});
 
 // function rootHandler (req, res) {
 //     res.send('Hello World!');

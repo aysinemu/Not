@@ -100,4 +100,20 @@ router.post('/pat',async function (req,res) {
   res.redirect('/');
 });
 
+router.get('/list', async function (req,res) {
+  const list = await userService.findAll();
+
+  list.sort((a, b) => a.id - b.id);
+
+  res.render('vwAccount/list', {
+      users: list
+  });
+});
+
+router.post('/del',async function (req,res) { 
+    const id = parseInt(req.body.id);
+    await userService.del(id);
+    res.redirect('/account/list');
+});
+
 export default router;

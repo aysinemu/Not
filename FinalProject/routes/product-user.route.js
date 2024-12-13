@@ -52,7 +52,17 @@ router.post('/del',async function (req,res) {
 router.post('/up',async function (req,res) {
     const id = parseInt(req.body.ProID);
     const entity = {
-      Price: req.body.Price
+      Price: 0
+  };
+    await productService.up(id,entity);
+    res.redirect('/admin/products/editor');
+});
+
+router.post('/upp',async function (req,res) {
+    const id = parseInt(req.body.ProID);
+    const entity = {
+      Price: 2,
+      FullDes: req.body.FullDes,
   };
     await productService.up(id,entity);
     res.redirect('/admin/products/editor');

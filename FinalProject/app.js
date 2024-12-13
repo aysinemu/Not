@@ -13,6 +13,7 @@ import session from 'express-session';
 import { isAdmin,isAuth,isSub,isEdit,isWrite } from './middlewares/auth.mdw.js';
 import miscRouter from './routes/misc.route.js';
 import Handlebars from 'handlebars';
+import ediRouter from './routes/edi.route.js';
 
 const app = express();
 app.set('trust proxy', 1) // trust first proxy
@@ -73,6 +74,10 @@ Handlebars.registerHelper('inArray', function (value, array) {
     return array.includes(value);
 });
 
+Handlebars.registerHelper('and', function (a, b) {
+    return a && b;
+});
+
 // function rootHandler (req, res) {
 //     res.send('Hello World!');
 // }
@@ -85,6 +90,7 @@ app.use('/admin/products/editor',isAuth,isEdit,productRouter);
 app.use('/products',productUserRouter);
 app.use('/admin/categories',isAuth,isAdmin,categoryRouter);
 app.use('/account', accountRouter);
+app.use('/rej',isAuth,ediRouter);
 app.use('/misc',isAuth, miscRouter);
 app.use('/misc/upload',isAuth,miscRouter);
 app.use('/misc/editor',isAuth,miscRouter);

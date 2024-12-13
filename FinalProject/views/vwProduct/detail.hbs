@@ -33,9 +33,13 @@
                     {{{this.product.FullDes}}}
                 </div>
             </p>
+            {{#if (or (eq authUser.permission 0) (eq authUser.permission 2))}}
+            {{!-- {{#if (and (or (eq authUser.permission 0) (eq authUser.permission 2)) (eq price 1))}} --}}
             <div class="form-group">
-              <input type="hidden" name="Price" id="txtPrice" class="form-control" value="0">
+              <label for="txtFullDes">Lý do từ chối: </label>
+              <input type="text" name="FullDes" id="txtFullDes" class="form-control" placeholder="Thiếu thông tin">
             </div>
+            {{/if}}
             <div class="form-group">
               <input type="hidden" name="Quantity" id="randomNumber" class="form-control">
             </div>
@@ -49,13 +53,19 @@
                 <i class="bi bi-heart-fill"></i>
                 Tym
             </button>
-            {{#if (or (eq authUser.permission 0) (eq authUser.permission 2))}}
+            {{#if (eq authUser.permission 0)}}
             <button type="submit" class="btn btn-danger" formaction="/products/del">
+                <i class="bi bi-trash-fill"></i>
+                Xóa
+            </button>
+            {{/if}}
+            {{#if (or (eq authUser.permission 0) (eq authUser.permission 2))}}
+            <button type="submit" class="btn btn-danger" formaction="/products/upp">
                 <i class="bi bi-x-lg"></i>
                 Từ chối
             </button>
             {{/if}}
-            {{#if (eq this.product.Price 1)}}
+            {{#if (or (eq this.product.Price 1) (eq this.product.Price 2))}}
             {{#if (or (eq authUser.permission 0) (eq authUser.permission 2))}}
             <button type="submit" class="btn btn-primary" formaction="/products/up">
                 <i class="bi bi-check2"></i>

@@ -1,0 +1,42 @@
+{{#if auth}}
+<div class="card">
+    <h4 class="card-header d-flex justify-content-between">
+       Từ chối
+    </h4>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên bài báo</th>
+                    <th>Nội dung tóm tắt</th>
+                    <th>Lý do từ chối</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each this.products}}
+                    {{#if (eq Price 2)}}
+                        <tr>
+                            <td scope="row">{{ProID}}</td>
+                            <td>{{ProName}}</td>
+                            <td>{{TinyDes}}</td>
+                            <td>{{FullDes}}</td>
+                            <td>
+                                <a name="" id="" class="btn btn-primary" href="/products/detail?id={{ProID}}" role="button">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            </td>
+                            {{!-- <td>{{Price}}</td>    
+                            <td>{{CatID}}</td>
+                            <td>{{Quantity}}</td> --}}
+                        </tr>
+                    {{/if}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+       The End
+    </div>
+<div>
+{{/if}}

@@ -26,5 +26,8 @@ export default {
     },
     up(id, changes){
         return db('products').where('ProID', id).update(changes);
+    },
+    upp(id, changes){
+        return db('products').where('ProID', id).update(changes);
     }
 }

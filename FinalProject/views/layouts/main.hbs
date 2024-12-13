@@ -40,15 +40,18 @@
                 <a class="dropdown-item" href="/admin/products"><i class="bi bi-newspaper"></i>Bài báo</a>
                 <a class="dropdown-item" href="/misc/upload"><i class="bi bi-upload"></i>Đăng bài báo</a>
                 <a class="dropdown-item" href="/admin/products/editor"><i class="bi bi-list-check"></i>Phê duyệt bài báo</a>
+                <a class="dropdown-item" href="/rej"><i class="bi bi-exclamation-lg"></i>Bài báo bị từ chối</a>
                 <a class="dropdown-item" href="/account/list"><i class="bi bi-people-fill"></i>Người dùng</a>
                 {{/if}}
                 {{#if (eq authUser.permission 2)}}
                 <a class="dropdown-item" href="/admin/products/editor"><i class="bi bi-list-check"></i>Phê duyệt bài báo</a>
                 <a class="dropdown-item" href="/admin/products"><i class="bi bi-newspaper"></i>Đã duyệt</a>
+                <a class="dropdown-item" href="/rej"><i class="bi bi-exclamation-lg"></i>Bài báo bị từ chối</a>
                 {{/if}}
                 {{#if (eq authUser.permission 3)}}
                 <a class="dropdown-item" href="/misc/upload"><i class="bi bi-upload"></i>Đăng bài báo</a>
                 <a class="dropdown-item" href="/admin/products/editor"><i class="bi bi-list-check"></i>Đang đợi duyệt</a>
+                <a class="dropdown-item" href="/rej"><i class="bi bi-exclamation-lg"></i>Bài báo bị từ chối</a>
                 {{/if}}
                 <div class="dropdown-divider"></div>
                 <a id="lnkLogout" class="dropdown-item" href="/account/logout"><i class="bi bi-box-arrow-in-left"></i>Đăng xuất</a>

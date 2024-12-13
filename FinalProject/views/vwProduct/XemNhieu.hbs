@@ -16,7 +16,13 @@
                         <img src="/static/imgs/sp/{{ProID}}/main.jpg" alt="{{ProName}}" title="{{ProName}}" class="card-img-top">
                         <div class="card-body">
                             <h4 class="card-title">{{ProName}}</h4>
-                            <h4 class="card-title text-danger">Chuyên mục: {{CatID}}</h4>
+                            {{#if (eq CatID 1)}}
+                                <h5 class="card-title text-muted">Chuyên mục: Nông sản</h5>
+                            {{/if}}
+                            {{#if (eq CatID 2)}}
+                                <h5 class="card-title text-muted">Chuyên mục: Hải sản</h5>
+                            {{/if}}
+                            {{!-- <h4 class="card-title text-danger">Chuyên mục: {{CatID}}</h4> --}}
                             <p class="card-text">{{TinyDes}}</p>
                         </div>
                         <div class="card-footer text-muted">

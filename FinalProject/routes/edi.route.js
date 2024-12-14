@@ -4,11 +4,11 @@ import rejService from '../services/rej.service.js';
 const router = express.Router();
 
 router.get('/', async function (req,res) {
-    const list = await rejService.findAll();
+    // const list = await rejService.findAll();
     const listt = await rejService.findAlll();
     listt.sort((a, b) => a.ProID - b.ProID);
     res.render('vwRej/list',{
-        rej: list,
+        // rej: list,
         products: listt
     });
 });

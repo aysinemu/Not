@@ -102,6 +102,7 @@ router.post('/tym',async function (req,res) {
 
 router.get('/Moi', async function (req,res) {
     // const list = await productService.findByCatId(id);
+    const listt = await articlesService.findAll();
     const list = await productService.findAll();
     
     const filteredList = list.filter(product => product.Price === 0);
@@ -109,33 +110,39 @@ router.get('/Moi', async function (req,res) {
     const sortedList = filteredList.sort((a, b) => b.ProID - a.ProID).slice(0, 10);
     
     res.render('vwProduct/Moi', {
-        products: sortedList
+        products: sortedList,
+        articles: listt
     });
 });
 
 router.get('/NoiBat', async function (req,res) {
     // const list = await productService.findByCatId(id);
+    const listt = await articlesService.findAll();
     const list = await productService.findAll();
     const topProducts = list.sort((a, b) => b.Quantity - a.Quantity).slice(0, 4);
     
     res.render('vwProduct/NoiBat', {
-        products: topProducts
+        products: topProducts,
+        articles: listt
     });
 });
 
 router.get('/XemNhieu', async function (req,res) {
     // const list = await productService.findByCatId(id);
+    const listt = await articlesService.findAll();
     const list = await productService.findAll();
     const topProducts = list.sort((a, b) => b.Quantity - a.Quantity).slice(0, 10);
     
     res.render('vwProduct/XemNhieu', {
-        products: topProducts
+        products: topProducts,
+        articles: listt
     });
 });
 
 router.get('/Top10', async function (req,res) {
     // const list = await productService.findByCatId(id);
     const list = await productService.findAll();
+    const listt = await articlesService.findAll();
 
     const groupedByCatID = list.reduce((acc, product) => {
         if (!acc[product.CatID]) {
@@ -154,7 +161,8 @@ router.get('/Top10', async function (req,res) {
     }).flat(); 
 
     res.render('vwProduct/Top10', {
-        products: topProductsByCatID
+        products: topProductsByCatID,
+        articles: listt
     });
 });
 

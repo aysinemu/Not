@@ -8,8 +8,6 @@
             {{#each this.articles}}
                 {{#if (eq this.category_id ../product.ProID)}}
                     {{../product.ProName}} | {{this.abstract}}
-                {{else}}
-                    {{../product.ProName}}
                 {{/if}}
             {{/each}}
         </h4>

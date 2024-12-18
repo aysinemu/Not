@@ -10,6 +10,10 @@ router.get('/register', function (req,res){
     res.render('vwAccount/register');
 });
 
+router.get('/forgot', function (req,res){
+  res.render('vwAccount/forgot');
+});
+
 router.get('/login', function (req,res){
     res.render('vwAccount/login');
 });

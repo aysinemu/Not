@@ -1,9 +1,12 @@
 import express from 'express'
 import productService from '../services/product.service.js';
+import articlesService from '../services/articles.service.js';
+import userService from '../services/user.service.js';
 
 const router = express.Router();
 
 router.get('/byCat', async function (req,res) {
+    const listt = await articlesService.findAll();
     const id = parseInt(req.query.id) || 0;
     // const list = await productService.findByCatId(id);
     const limit = 4;
@@ -22,6 +25,7 @@ router.get('/byCat', async function (req,res) {
         };
         page_items.push(item);
     }
+    // console.log("Articles: ", listt);
 
     const list = await productService.findPageByCatId(id, limit, offset);
     res.render('vwProduct/byCat',{
@@ -29,18 +33,33 @@ router.get('/byCat', async function (req,res) {
         empty: list.length === 0,
         page_items: page_items,
         catId: id,
+        articles: listt
     });
 });
 
 router.get('/detail',async function (req,res) {
     const id = parseInt(req.query.id) || 0;
     const product = await productService.findById(id);
+    const listt = await articlesService.findAll();
+    const listtt = await userService.findAll();
     if(!product){
         return res.redirect('/products');
     }
     res.render('vwProduct/detail', {
-        product: product
+        product: product,
+        articles: listt,
+        users: listtt,
+        user: req.session.authUser
     });
+});
+
+router.post('/cmt',async function (req,res) {
+    const changes = {
+        is_premium : req.body.is_premium,
+        author : req.body.author,
+        content : req.body.content,
+    };
+    await articlesService.add(changes);
 });
 
 router.post('/del',async function (req,res) { 
@@ -53,7 +72,12 @@ router.post('/up',async function (req,res) {
     const id = parseInt(req.body.ProID);
     const entity = {
       Price: 0
-  };
+    };
+    const changes = {
+        abstract : req.body.abstract,
+        category_id : id
+    };
+    await articlesService.add(changes);
     await productService.up(id,entity);
     res.redirect('/admin/products/editor');
 });

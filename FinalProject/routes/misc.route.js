@@ -92,7 +92,6 @@ router.post('/upload', upload.array('fuMain', 5), async function (req, res) {
     const proID = ret[0];  
     console.log('ProID:', proID); 
 
-    // Updated to absolute path for ProID directory
     const proDir = path.join('E:', 'HTML', 'WebProgram', 'FinalProject', 'static', 'imgs', 'sp', proID.toString());
     if (!fs.existsSync(proDir)) {
       fs.mkdirSync(proDir, { recursive: true }); 

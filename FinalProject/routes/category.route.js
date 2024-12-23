@@ -20,7 +20,7 @@ router.post('/add', async function (req,res) {
     }
     const ret = await categoryService.add(entity);
     console.log(ret)
-    res.render('vwCategory/categories');
+    res.redirect('/admin/categories');
 });
 
 router.get('/edit',async function (req,res) {
